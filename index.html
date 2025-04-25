@@ -86,18 +86,30 @@
         .photo {
             border-radius: 8px;
             overflow: hidden;
-            height: 300px;
+            height: 330px;
             background-color: #e9ecef;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;
             color: #6c757d;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            position: relative;
         }
         .photo img {
             width: 100%;
-            height: 100%;
+            height: 300px;
             object-fit: cover;
+        }
+        .photo::before {
+            content: attr(data-label);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 5px 0;
+            text-align: center;
+            font-weight: bold;
+            z-index: 1;
         }
         .contact {
             text-align: center;
@@ -131,6 +143,83 @@
             font-size: 14px;
             text-align: center;
             width: 130px;
+        }
+        
+        /* Mobile Responsive Design */
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .content {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 28px;
+            }
+            
+            .subheader {
+                font-size: 16px;
+            }
+            
+            /* Stack photos vertically on mobile */
+            .photos {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .photo {
+                height: 350px; /* Taller photos when stacked */
+            }
+            
+            /* Make features stack on smaller screens */
+            .feature {
+                width: 100%;
+            }
+            
+            /* Adjust tear tabs for mobile */
+            .tear-tabs {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            
+            .tear-tab {
+                width: calc(50% - 20px);
+                margin-bottom: 10px;
+            }
+        }
+        
+        /* Extra small devices */
+        @media screen and (max-width: 480px) {
+            .header {
+                padding: 15px 0;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            h2 {
+                font-size: 20px;
+            }
+            
+            .photo {
+                height: 280px;
+            }
+            .photo img {
+                height: 250px;
+            }
+            
+            .price {
+                font-size: 20px;
+            }
+            
+            .contact-button {
+                width: 100%;
+                padding: 10px;
+                box-sizing: border-box;
+            }
         }
     </style>
 </head>
@@ -174,10 +263,10 @@
             
             <h2>Take a Look Inside</h2>
             <div class="photos">
-                <div class="photo">Kitchen <br><img src="kitchen.png" alt="Kitchen"></div>
-                <div class="photo">Bathroom <br><img src="bathroom.jpeg" alt="Bathroom"></div>
-                <div class="photo">Living <br><img src="living.jpeg" alt="Shower"></div>
-                <div class="photo">Bedroom <br><img src="bedroom.png" alt="Bedroom"></div>
+                <div class="photo" data-label="Kitchen"><img src="kitchen.png" alt="Kitchen"></div>
+                <div class="photo" data-label="Bathroom"><img src="bathroom.jpeg" alt="Bathroom"></div>
+                <div class="photo" data-label="Living Room"><img src="living.jpeg" alt="Living"></div>
+                <div class="photo" data-label="Bedroom"><img src="bedroom.png" alt="Bedroom"></div>
             </div>
             
             <div class="contact">
@@ -190,11 +279,10 @@
                 <a href="mailto:ariana_azarbal@brown.edu" class="contact-button">Get In Touch</a>
                 <p> email: ariana_azarbal@brown.edu </p>
                 <p> phone: +1 818-469-6165</p>
-
             </div>
-<!--             
-            <div class="tear-tabs">
-                <div class="tear-tab">Contact:<br>+1 310-935-5922</div>
+            
+            <!-- <div class="tear-tabs">
+                <div class="tear-tab">Contact:<br>+1 818-469-6165</div>
                 <div class="tear-tab">Contact:<br>+1 818-469-6165</div>
                 <div class="tear-tab">Contact:<br>+1 818-469-6165</div>
                 <div class="tear-tab">Contact:<br>+1 818-469-6165</div>
